@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160206113933) do
+ActiveRecord::Schema.define(version: 20160206114824) do
 
   create_table "buyers", force: :cascade do |t|
     t.string   "email",                  default: "",  null: false
@@ -38,6 +38,14 @@ ActiveRecord::Schema.define(version: 20160206113933) do
     t.string   "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "variants", force: :cascade do |t|
+    t.boolean  "is_active",  default: true
+    t.integer  "price",      default: 0
+    t.integer  "quantity",   default: 0
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
 end
