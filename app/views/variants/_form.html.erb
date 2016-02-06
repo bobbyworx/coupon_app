@@ -1,4 +1,11 @@
-<%= f.text_field :is_active, placeholder: 'Select' %>
+<%= f.label :status %>
+<%= f.collection_select :is_active, Variant::STATUSES, :to_s, :to_s, placeholder: 'Select' %>
+
+<%= f.label :price %>
 <%= f.text_field :price, placeholder: 'Price' %>
+
+<%= f.label :quantity %>
 <%= f.text_field :quantity, placeholder: 'Quantity' %>
+
+<%= f.label :product %>
 <%= f.collection_select :product_id, Product.all, :id, :title %>
