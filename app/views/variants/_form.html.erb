@@ -1,0 +1,4 @@
+<%= f.text_field :is_active, placeholder: 'Select' %>
+<%= f.text_field :price, placeholder: 'Price' %>
+<%= f.text_field :quantity, placeholder: 'Quantity' %>
+<%= f.collection_select :product_id, Product.all, :id, :name %>

@@ -1,0 +1,19 @@
+<h1>Variants</h1>
+
+<table>
+  <tr>
+    <th>Is active</th>
+    <th>Price</th>
+    <th>Quantity</th>
+    <th>Product</th>
+  </tr>
+  <%= link_to 'Add new variant', new_variant_path %>
+  <% @variants.each do |variant| %>
+    <tr>
+      <td><%= variant.is_active %></td>
+      <td><%= variant.price %></td>
+      <td><%= variant.quantity %></td>
+      <td><%= variant.product.title %></td>
+    </tr>
+  <% end %>
+</table>
