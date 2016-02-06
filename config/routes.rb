@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :products
   resources :variants
 
+  get '/buy_product/:id' => 'products#buy_product', as: 'buy_product'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

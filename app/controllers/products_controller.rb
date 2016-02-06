@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
-  before_action :find_product, only: [:edit, :update, :show, :destroy]
+  before_action :find_product, only: [:edit, :update, :show, :destroy, :buy_product]
+  before_action :authenticate_buyer!
 
   def new
     @product = Product.new
@@ -34,7 +35,16 @@ class ProductsController < ApplicationController
 
   def destroy
     @product.destroy
-    redirect_to products_path, notice: "Product #{@product.user_name} was deleted!"
+    redirect_to products_path, notice: "Product #{@product.title} was deleted!"
+  end
+
+  def buy_product
+    if current_buyer.credits < @product.variants.where(:is_active => true).map(&:price).min
+      redirect_to products_path, error: 'Not enough credits to purchase this item!'
+    else
+      current_buyer.orders.create( product_id: @product.id )
+      redirect_to products_path, notice: "Product #{@product.title} bought! #{current_buyer.credits} remaining!"
+    end
   end
 
 private
