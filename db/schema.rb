@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160206125518) do
+ActiveRecord::Schema.define(version: 20160206125803) do
 
   create_table "buyers", force: :cascade do |t|
     t.string   "email",                  default: "",  null: false
@@ -47,10 +47,7 @@ ActiveRecord::Schema.define(version: 20160206125518) do
     t.string   "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.integer  "variant_id"
   end
-
-  add_index "products", ["variant_id"], name: "index_products_on_variant_id"
 
   create_table "variants", force: :cascade do |t|
     t.boolean  "is_active",  default: true
@@ -58,6 +55,9 @@ ActiveRecord::Schema.define(version: 20160206125518) do
     t.integer  "quantity",   default: 0
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+    t.integer  "product_id"
   end
+
+  add_index "variants", ["product_id"], name: "index_variants_on_product_id"
 
 end
